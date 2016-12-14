@@ -43,7 +43,7 @@
         $emailErr = "Invalid email format";
         $hasErr = 1; 
       } else {
-          $query = "SELECT * FROM user_info WHERE AccountEmail='$email' ";
+          $query = "SELECT * FROM user WHERE email='$email' ";
           $result = mysqli_query($dbc,$query);
           if(mysqli_num_rows($result) > 0){
             $emailErr = "Email has been used, try another one";
@@ -60,11 +60,6 @@
   } else {
     $address = test_input($_POST["address"]);
     // check if e-mail address is well-formed
-    if (!filter_var($address, FILTER_VALIDATE_EMAIL)) {
-        $addressErr = "Invalid address";
-        $hasErr = 1; 
-      } else {
-      }
   }
 
 
@@ -94,22 +89,25 @@
 if($hasErr == 0)
 {
 
-    $query = "INSERT INTO person(lastame, firstname, email, phone,address) VALUES ('$lName', '$fName', '$email', '$phone', '$address')";
+    $query = "INSERT INTO person(lastname, firstname, email, phone,address) VALUES ('$lName', '$fName', '$email', '$phone', '$address')";
     $result = mysqli_query($dbc, $query);
     if($result) {
-      //echo '<p>User was added!</p>';
       $name = $fName. ' ' . $lName;
-
-      $query = "INSERT INTO user_info(username, persion_id, email, password) VALUES ('$name', LAST_INSERT_ID(), '$email', SHA1('$password'))";
+      $query = "INSERT INTO user(username, persion_id, email, password) VALUES ('$name', LAST_INSERT_ID(), '$email', SHA1('$password'))";
       $result = mysqli_query($dbc,$query);
+      if($result) { 
+        if(isset($_SESSION['username']) and $_SESSION['category'] == 'admin') {
+          header('Location: admin/user.php');
+        }else{
+          header('Location: login.php');
+        }
+      }else {
+        echo '<p>Failed to add a new user:'.mysqli_error($dbc).'</p>';
+        echo '<p>'.$query.'</p>';
+      }
     } else {
       echo '<p>Failed to add a new user:'.mysqli_error($dbc).'</p>';
       echo '<p>'.$query.'</p>';
-    }
-    if(isset($_SESSION['username']) and $_SESSION['category'] == 'admin') {
-      header('Location: admin/user.php');
-    }else{
-      header('Location: login.php');
     }
   }
 }
@@ -161,6 +159,7 @@ if($hasErr == 0)
             <label for="phone">Phone</label>
           </div>
           <span class="error col s12">* <?php echo $phoneErr; ?> </span>
+
           <div class="input-field col s12">
             <input id="email" name="email" type="email" class="validate">
             <label for="email">Email</label>
@@ -168,7 +167,7 @@ if($hasErr == 0)
           <span class="error col s12">* <?php echo $emailErr; ?> </span>
 
           <div class="input-field col s12">
-            <input id="address" name="address" type="address" class="validate">
+            <input id="address" name="address" type="text" class="validate">
             <label for="address">Address</label>
           </div>
           <span class="error col s12">* <?php echo $addressErr; ?> </span>
