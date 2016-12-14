@@ -5,13 +5,13 @@ session_start();
 include('config/connection.php');
 include('config/setup.php');
 if($_POST) {
-	$query="SELECT * FROM user WHERE username='$_POST[email]' AND password = SHA1('$_POST[password]')";
+	$query="SELECT * FROM user WHERE email='$_POST[email]' AND password = SHA1('$_POST[password]')";
 	$result=mysqli_query($dbc, $query);
 	if(mysqli_num_rows($result) == 1) {
 		$data=mysqli_fetch_assoc($result);
 		if($data['status'] == 'active') {
-			$_SESSION['username'] = $_POST['email'];
-			if($data['Category'] == 'admin' ) {
+			$_SESSION['username'] = $data['username'];
+			if($data['category'] == 'admin' ) {
 				$_SESSION['category'] = 'admin';
 				header('Location:admin/index.php');
 			} else {
@@ -42,19 +42,7 @@ if($_POST) {
 		  <br><br>
 			<div class="row">
 			  	<div class="col s4">
-			  		<h3>User Login</h3>
-			  		<!--
-			  		<?php
-					  	if($_POST) {
-							echo '<p>'.$_POST['email'].'</p>';
-							echo '<br>';
-							echo '<p>'.$_POST['password'].'</p>';
-						}else {
-							echo '<p>No Post</p>';
-						}
-					?>
-					-->
-	
+			  		<h3>User Login</h3>	
 			  	</div>
 			  		
 				<form action="login.php" method="post" role="form">

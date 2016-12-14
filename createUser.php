@@ -5,9 +5,8 @@
 <?php include('config/setup.php'); ?>
 <?php
   if($_POST["submitted"] == 1) {
-
-    $fNameErr =$lNameErr = $emailErr = $phoneErr = $passwordErr = "";
-    $fName = $lName = $email = $phone = $password = "";
+    $fNameErr =$lNameErr = $emailErr = $phoneErr = $passwordErr = $addressErr = "";
+    $fName = $lName = $email = $phone = $password = $address = "";
     $hasErr = 0;
 # first name validation
   if (empty($_POST['fName'])) {
@@ -54,6 +53,19 @@
 
       }
   }
+#address validation
+  if (empty($_POST["address"])) {
+    $emailErr = "Address is required";
+    $hasErr = 1;
+  } else {
+    $address = test_input($_POST["address"]);
+    // check if e-mail address is well-formed
+    if (!filter_var($address, FILTER_VALIDATE_EMAIL)) {
+        $addressErr = "Invalid address";
+        $hasErr = 1; 
+      } else {
+      }
+  }
 
 
 #phone validation
@@ -82,13 +94,13 @@
 if($hasErr == 0)
 {
 
-    $query = "INSERT INTO person(LastName, FirstName, Email, Phone) VALUES ('$lName', '$fName', '$email', '$phone')";
+    $query = "INSERT INTO person(lastame, firstname, email, phone,address) VALUES ('$lName', '$fName', '$email', '$phone', '$address')";
     $result = mysqli_query($dbc, $query);
     if($result) {
       //echo '<p>User was added!</p>';
       $name = $fName. ' ' . $lName;
 
-      $query = "INSERT INTO user_info(UserName, PID, AccountEmail, Hashword) VALUES ('$name', LAST_INSERT_ID(), '$email', SHA1('$password'))";
+      $query = "INSERT INTO user_info(username, persion_id, email, password) VALUES ('$name', LAST_INSERT_ID(), '$email', SHA1('$password'))";
       $result = mysqli_query($dbc,$query);
     } else {
       echo '<p>Failed to add a new user:'.mysqli_error($dbc).'</p>';
@@ -154,6 +166,13 @@ if($hasErr == 0)
             <label for="email">Email</label>
           </div>
           <span class="error col s12">* <?php echo $emailErr; ?> </span>
+
+          <div class="input-field col s12">
+            <input id="address" name="address" type="address" class="validate">
+            <label for="address">Address</label>
+          </div>
+          <span class="error col s12">* <?php echo $addressErr; ?> </span>
+
           <div class="input-field col s12">
             <input id="password" name="password" type="password" class="validate">
             <label for="password">Password</label>
