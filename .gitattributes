@@ -1,0 +1,2 @@
+config/connection.php merge=ours
+admin/config/connection.php merge=ours
