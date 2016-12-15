@@ -6,10 +6,11 @@ ob_start();
 include('config/connection.php');
 # Constants:
 define('D_TEMPLATE', 'template');
+define('D_STORAGE','storage/');
 
 
 
-$site_title = 'FinalProject';
+$site_title = 'AnonymousCloud';
 
 
 
