@@ -1,2 +1,3 @@
-Site/config/connection.php
-Site/admin/config/connection.php
+config/connection.php
+admin/config/connection.php
+storage/
