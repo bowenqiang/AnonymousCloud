@@ -6,7 +6,7 @@
 ?>
 
 <nav class="indigo" role="navigation">
-	<div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">OCDX Repo - Group 6</a>
+	<div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">AnonymousCloud Created By WBQ</a>
 	  <ul class="right hide-on-med-and-down">
 	    <li><a href="UploadFile.php">Upload File</a></li>
         <li><a href="DownloadFile.php">Download File</a></li>       
