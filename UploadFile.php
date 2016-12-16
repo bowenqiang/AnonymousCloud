@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php include('config/setup.php'); ?>
 <?php
 	if($_POST["submitted"] == 1)
@@ -7,6 +8,13 @@
 		$message = "";
 		$retrievingcode = uniqid();
 		$total = count($_FILES['upload']['name']);
+		$userid=0;
+
+		if($_POST['switch_active']==1)
+		{
+			$userid=$_SESSION['userid'];
+		}
+
 		foreach ($_FILES['upload']['tmp_name'] as $key => $tmp_name) 
 		{
 			$tmpFilePath = $_FILES['upload']['tmp_name'][$key];
@@ -30,7 +38,8 @@
 					//update databse
 					$date = date('Y-m-d H:i:s');
 
-					$query = "INSERT INTO file(fetchcode, filename, savename,uploadtime) VALUES ('$retrievingcode','$originname', '$newname','$date')";
+
+					$query = "INSERT INTO file(fetchcode, filename, savename, user_id, uploadtime) VALUES ('$retrievingcode','$originname', '$newname', '$userid', '$date')";
 					$result = mysqli_query($dbc,$query);
 					if(!$result)
 					{
@@ -63,7 +72,7 @@
 <body class='indigo lighten-5'>
 	<?php include(D_TEMPLATE.'/navigation.php'); ?>
 	
-	<div>
+	<div style='padding: 1% 1% 1% 1%;'>
 		<form action="UploadFile.php" method="post" role="form" enctype="multipart/form-data">
 			<div class="file-field input-field">
 				<div class="btn">
@@ -74,13 +83,32 @@
 					<input class="file-path validate" type="text" placeholder="Upload one or more files">
 				</div>
 			</div>
+			<!-- Switch -->
+			Anonymous Upload:
+			<div class="switch">
+				<label>
+					On
+					<input name='switch_activate' type='hidden' value='0'>
+					<input <?php
+						if(!isset($_SESSION['username']))
+						{
+							echo 'disabled';
+						}
+					?> type="checkbox" name="switch_active" value="1">
+					<span class="lever"></span>
+					Off				
+				</label>			
+			</div>
+				
+
+
 			<button type="submit" class="waves-effect waves-light btn">Upload</button>
             <input type="hidden" name="submitted" value="1">
 		</form>
 		<?php
-			echo '<h3>Message:</h3>';
+			echo '<h5>Message:</h5>';
 			echo '<p>'.$message.'</p>';
-			echo '<h3>Your Retrieving Code is Here: </h3>';
+			echo '<h5>Your Retrieving Code is Here: </h5>';
 			if($uploadOk == 1){
 				echo '<p>'.$retrievingcode.'</p>';
 			}			

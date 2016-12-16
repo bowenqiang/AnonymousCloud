@@ -11,6 +11,8 @@ if($_POST) {
 		$data=mysqli_fetch_assoc($result);
 		if($data['status'] == 'active') {
 			$_SESSION['username'] = $data['username'];
+			$_SESSION['userid'] = $data['user_id'];
+			
 			if($data['category'] == 'admin' ) {
 				$_SESSION['category'] = 'admin';
 				header('Location:admin/index.php');
@@ -34,11 +36,11 @@ if($_POST) {
 		<?php include('config/js.php'); ?>		
   <!-- CSS  -->
 </head>
-<body class='indigo lighten-5'>
+<body >
 	<?php include(D_TEMPLATE.'/navigation.php'); ?>
 
 	<div class="section" id="index-banner">
-		<div class="white z-depth-1 container" style='padding: 1% 1% 1% 1%;'>
+		<div class="white z-depth-5 container" style='padding: 1% 1% 1% 1%;'>
 		  <br><br>
 			<div class="row">
 			  	<div class="col s4">
