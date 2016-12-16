@@ -21,7 +21,7 @@ if(!isset($_SESSION['username']) or $_SESSION['category'] !='other') {
 <body class='indigo lighten-5'>
 	<?php include(D_TEMPLATE.'/navigation.php'); ?>
 	
-	<div>
+	<div style='padding: 1% 1% 1% 1%;'>
 		<h>Put your stuff here</h>
 		
 		
