@@ -16,6 +16,12 @@
 		<a href="#" class="brand-logo"><i class="material-icons">cloud</i>AnonymousCloud</a>
 		<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 		<ul class="right hide-on-med-and-down">
+		<?php
+			if(isset($_SESSION['username'])) {
+				echo '<li><a href="index.php">Home</a></li>';
+				echo '<li><a href="inventory.php">My Stuffs</a></li>';
+			}
+		?>
 		    <li><a href="UploadFile.php">Upload File</a></li>
 	        <li><a href="DownloadFile.php">Download File</a></li>       
         <?php

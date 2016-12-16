@@ -4,7 +4,7 @@ session_start();
 if(!isset($_SESSION['username']) or $_SESSION['category'] !='other') {
 	header('Location: login.php');
 }
-//header('Location: browseManifests.php');
+//header('Location: inventory.php');
 ?>
 <?php include('config/setup.php'); ?>
 
@@ -19,7 +19,7 @@ if(!isset($_SESSION['username']) or $_SESSION['category'] !='other') {
 	<body>
 		<?php include(D_TEMPLATE.'/navigation.php'); ?>		
 		<div class="container">
-			<h1>This is the page for General User</h1>			
+			<h1>This is the page for Main</h1>			
 		</div>				
 		<?php include(D_TEMPLATE.'/footer.php'); ?>
 	</body>

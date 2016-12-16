@@ -1,14 +1,16 @@
-<?php include('config/setup.php'); ?>
 <?php
-	$message = "";
-	if($_POST['submitted'] == 1)
-	{
-		$query = "SELECT * FROM file WHERE fetchcode='$_POST[retrievingcode]'";
-		$result = mysqli_query($dbc,$query);
-		$message.=$query."<br>";
-		$message.=mysqli_error($dbc)."<br>";
-	}
+#Start the session
+session_start();
+if(!isset($_SESSION['username']) or $_SESSION['category'] !='other') {
+	header('Location: login.php');
+}
 
+?>
+<?php include('config/setup.php'); ?>
+
+<?php
+	$query = "SELECT * FROM file WHERE user_id=$_SESSION[userid]";
+	$result = mysqli_query($dbc,$query);
 ?>
 							
 
@@ -23,22 +25,9 @@
 </head>
 <body class='indigo lighten-5'>
 	<?php include(D_TEMPLATE.'/navigation.php'); ?>
-	<dir style='padding: 1% 1% 1% 1%;'>
-		<div>		
-			<div class="row">
-				<form class="col s12" action="DownloadFile.php" method="post" role="form">
-					<div class="row">
-						<div class="input-field col s12">
-							<input type="text" id="retrievingcode" name="retrievingcode" class="validate">
-							<label for="retrievingcode">Retrieving Code: </label>						
-						</div>					
-					</div>
-					<button type="submit" class="waves-effect waves-light btn">Submit</button>
-	            	<input type="hidden" name="submitted" value="1">				
-				</form>
-			</div>
-		</div>
-
+	
+	<div style='padding: 1% 1% 1% 1%;'>
+		<h>This is the page for MyStuff</h>
 		<div>
 			<div class="row">
 				<table class="responsive-table hightlight col s12">
@@ -72,17 +61,10 @@
 				
 			</div>
 		</div>
-		<h3>Message:</h3>
-		<?php
-			//echo "<p>".$message."</p>"
-		?>
-		
-	</dir>
-	
 
 		
 		
-	
+	</div>
 	
 	<?php include(D_TEMPLATE.'/footer.php'); ?>
   </body>
