@@ -6,7 +6,12 @@
 ?>
 
 <!-- Dropdown Structure -->
-<ul id="dropdown" class="dropdown-content">
+<ul id="dropdown1" class="dropdown-content">
+	<li><a href="#">Setting</a></li>
+	<li><a href="logout.php">Logout</a></li>	
+</ul>
+
+<ul id="dropdown2" class="dropdown-content">
 	<li><a href="#">Setting</a></li>
 	<li><a href="logout.php">Logout</a></li>	
 </ul>
@@ -27,7 +32,7 @@
         <?php
             if(isset($_SESSION['username'])) { 
 
-                echo '<li><a class="dropdown-button" href="#" data-activates="dropdown">'.$_SESSION['username'].'<i class="material-icons right">arrow_drop_down</i></a></li>';    
+                echo '<li><a class="dropdown-button" href="#" data-activates="dropdown1">'.$_SESSION['username'].'<i class="material-icons right">arrow_drop_down</i></a></li>';    
             }else{
                 echo '<li><a href="login.php">Log in</a></li>';
             }
@@ -47,7 +52,7 @@
 		 <?php
             if(isset($_SESSION['username'])) { 
 
-                echo '<li><a class="dropdown-button" href="#" data-activates="dropdown">'.$_SESSION['username'].'<i class="material-icons right">arrow_drop_down</i></a></li>';    
+                echo '<li><a class="dropdown-button" href="#" data-activates="dropdown2">'.$_SESSION['username'].'<i class="material-icons right">arrow_drop_down</i></a></li>';    
             }else{
                 echo '<li><a href="login.php">Log in</a></li>';
             }
