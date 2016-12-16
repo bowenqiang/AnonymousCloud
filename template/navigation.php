@@ -36,8 +36,24 @@
 	  </ul>
 	
 		<ul id="mobile-demo" class="side-nav">
+		<?php
+			if(isset($_SESSION['username'])) {
+				echo '<li><a href="index.php">Home</a></li>';
+				echo '<li><a href="inventory.php">My Stuffs</a></li>';
+			}
+		?>
 			<li><a href="UploadFile.php">Upload File</a></li>
-			<li><a href="DownloadFile.php">Download File</a></li>   
+			<li><a href="DownloadFile.php">Download File</a></li>
+		 <?php
+            if(isset($_SESSION['username'])) { 
+
+                echo '<li><a class="dropdown-button" href="#" data-activates="dropdown">'.$_SESSION['username'].'<i class="material-icons right">arrow_drop_down</i></a></li>';    
+            }else{
+                echo '<li><a href="login.php">Log in</a></li>';
+            }
+            
+        ?>
+
 		</ul>
 	</div>
 </nav>
