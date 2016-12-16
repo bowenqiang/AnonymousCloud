@@ -7,7 +7,8 @@ This Website is still under developing. This server is powered by Amazon EC2.
 * Create New User  
 * Upload Multipule Files  
 * Download Files
-* Manage own Files   
+* Manage own Files
+
 ## What is going to be added later:
 * share files
 * better UI 
