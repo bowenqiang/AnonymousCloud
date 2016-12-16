@@ -21,14 +21,13 @@
 <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
 <style>
-
-footer {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 1rem;
-  background-color: #efefef;
-  text-align: center;
+body {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
 }
+main {
+	flex: 1 0 auto;
+}
+
 </style>
