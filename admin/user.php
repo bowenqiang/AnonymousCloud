@@ -100,61 +100,8 @@ $result = mysqli_query($dbc, $query);
 							<?php
 						}				
 					?>				
-				</table>	
-				
-			</form>			
-			<!--<div class="row">
-				<div class="col-md-4">
-
-					<div class="panel panel-info">
-						<div class="panel-heading">
-							<h5>Create New User</h5>
-						</div>
-						<div class="panel-body">
-							<form action="user.php" method="post" role="form">
-								<div class="form-group">
-									<label for="UserName">UserName</label>
-									<input type="username" class="form-control" id="username" name="username" placeholder="Username">
-								</div>
-								<div class="form-group">
-									<label for="Email">Email address</label>
-									<input type="email" class="form-control" id="Email" name="email" placeholder="Email">
-								</div>
-								<div class="form-group">
-									<label for="Password">Password</label>
-									<input type="password" class="form-control" id="Password" name="password" placeholder="Password">
-								</div>
-								<div class="form-group">
-									<label for="Category">Category</label>
-									  <select class="form-control" id="Category" name="category">
-									    <option>admin</option>
-									    <option>other</option>
-									    <option>3</option>
-									    <option>4</option>
-									  </select>
-								</div>								
-								<div class="form-group">
-									<label for="isActive">isActive</label>
-									  <select class="form-control" id="isActive" name="isactive">
-									    <option>Yes</option>
-									    <option>No</option>
-									  </select>
-								</div>
-								<button type="submit" class="btn btn-default">Submit</button>
-								<input type="hidden" name="submitted" value="1">
-							</form>
-						</div>
-					</div> 
-				</div>
-			</div>
-			
-			
-			
-			<button>Create New User</button>
-			<button>Disable User</button>
-			<button>Delete User</button>
-		</div> -->
-	
+				</table>					
+			</form>				
 		<?php //include(D_TEMPLATE.'/footer.php'); ?>
 		</div>
 	</body>
