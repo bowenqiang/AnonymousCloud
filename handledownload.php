@@ -22,6 +22,8 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 		    header('Pragma: public');
 		    header('Content-Length: ' . filesize($savename));
 		    readfile($savename);
+            $date = date('Y-m-d H:i:s');
+            $query = "UPDATE file SET lastdownloadtime='$date' WHERE file_id = $id";
 		    exit;
     	}
     	else
