@@ -1,5 +1,4 @@
 <?php
-
 include('config/setup.php');
 $message = "";
 if(isset($_GET['id']) && is_numeric($_GET['id'])) {
@@ -11,24 +10,24 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
     {
     	$file_data = mysqli_fetch_assoc($result);
     	$savename= D_STORAGE.$file_data['savename'];
-    	$filename = $file_data['filename'];
     	if(file_exists($savename))
     	{
-		    header('Content-Description: File Transfer');
-		    header('Content-Type: application/octet-stream');
-		    header('Content-Disposition: attachment; filename="'.basename($filename).'"');
-		    header('Expires: 0');
-		    header('Cache-Control: must-revalidate');
-		    header('Pragma: public');
-		    header('Content-Length: ' . filesize($savename));
-		    readfile($savename);
-		    exit;
+	    	if(unlink($savename))
+	    	{
+	    		$message.="Deleted file: ".$savename;
+	    	}
+	    	else
+	    	{
+	    		$message.="Error deleting file: ".$savename;
+	    	}
     	}
     	else
     	{
-    		$message.="File does not exit!".$filename;
+    		$message.="File does not exit!".$savename;
     	}
  
+    	$query = "DELETE FROM file WHERE file_id=$id";
+    	$result = mysqli_query($dbc,$query);
     }
     else
     {

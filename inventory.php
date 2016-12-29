@@ -43,14 +43,12 @@ if(!isset($_SESSION['username']) or $_SESSION['category'] !='other') {
 								while($table_user = mysqli_fetch_assoc($result)) {
 									?>
 									<tr>
-										<!--
-										<td><?php echo '<a href="handledownload.php?id='.$table_user['savename'].'">'.$table_user['filename'].'</a>'; ?></td> -->
-										<td><?php echo '<a href="storage/'.$table_user['savename'].'">'.$table_user['filename'].'</a>'; ?></td>
+										
+										<td><?php echo '<a href="handledownload.php?id='.$table_user['file_id'].'">'.$table_user['filename'].'</a>'; ?></td> 
+										
 										<td><?php echo $table_user['uploadtime']; ?></td>
 										<td><?php echo $table_user['lastdownloadtime']; ?></td>
-										<!--
-										<td><?php echo '<a href="delete_user.php?id='.$table_user['user_id'].'">Delete</a>' ?></td>
-										-->
+										<td><?php echo '<a href="delete_file.php?id='.$table_user['file_id'].'">Delete</a>' ?></td>
 									</tr>				
 									<?php
 								}				
