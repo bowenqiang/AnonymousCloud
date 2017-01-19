@@ -44,12 +44,12 @@ if(!isset($_SESSION['username']) or $_SESSION['category'] !='admin') {
 									?>
 									<tr>
 										
-										<td><?php echo '<a href="handledownload.php?id='.$table_file['file_id'].'">'.$table_file['filename'].'</a>'; ?></td> 
+										<td><?php echo '<a href="../handledownload.php?id='.$table_file['file_id'].'">'.$table_file['filename'].'</a>'; ?></td> 
 										
 										<td><?php echo $table_file['uploadtime']; ?></td>
 										<td><?php echo $table_file['lastdownloadtime']; ?></td>
 										<td><?php echo $user_id = $table_file['username']; ?></td>
-										<td><?php echo '<a href="delete_file.php?id='.$table_file['file_id'].'">Delete</a>' ?></td>
+										<td><?php echo '<a href="../delete_file.php?id='.$table_file['file_id'].'">Delete</a>' ?></td>
 									</tr>				
 									<?php
 								}				
