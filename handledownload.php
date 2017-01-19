@@ -24,7 +24,10 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 		    readfile($savename);
             $date = date('Y-m-d H:i:s');
             $query = "UPDATE file SET lastdownloadtime='$date' WHERE file_id = $id";
-		    exit;
+            $result = mysqli_query($dbc,$query);
+            exit;
+            header("Location: inventory.php");
+
     	}
     	else
     	{
@@ -41,7 +44,7 @@ else
 {
 	$message.="Error ID";
 }
-header("Location: inventory.php");
+
 
 ?>
 
