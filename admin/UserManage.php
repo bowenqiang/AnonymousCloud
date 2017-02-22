@@ -2,7 +2,7 @@
 #Start the session
 session_start();
 if(!isset($_SESSION['username']) or $_SESSION['category'] !='admin') {
-	header('Location: login.php');
+	header('Location: ../login.php');
 }
 
 ?>

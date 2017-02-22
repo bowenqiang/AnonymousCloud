@@ -23,10 +23,10 @@
 		<ul class="right hide-on-med-and-down">
 		<?php
 			if(isset($_SESSION['username'])) {
-				if($_SESSION['username'] == 'admin') {
+				if($_SESSION['category'] == 'admin') {
 					echo '<li><a href="admin/index.php">Home</a></li>';
 					echo '<li><a href="admin/StuffManage.php">File Manage</a></li>';
-					echo '<li><a href="admin/UserManage.php">File Manage</a></li>';
+					echo '<li><a href="admin/UserManage.php">User Manage</a></li>';
 				} else {
 					echo '<li><a href="index.php">Home</a></li>';
 					echo '<li><a href="inventory.php">My Stuffs</a></li>';
@@ -50,10 +50,10 @@
 		<ul id="mobile-demo" class="side-nav">
 		<?php
 			if(isset($_SESSION['username'])) {
-				if($_SESSION['username'] == 'admin') {
+				if($_SESSION['category'] == 'admin') {
 					echo '<li><a href="admin/index.php">Home</a></li>';
 					echo '<li><a href="admin/StuffManage.php">File Manage</a></li>';
-					echo '<li><a href="admin/UserManage.php">File Manage</a></li>';
+					echo '<li><a href="admin/UserManage.php">User Manage</a></li>';
 				} else {
 					echo '<li><a href="index.php">Home</a></li>';
 					echo '<li><a href="inventory.php">My Stuffs</a></li>';
