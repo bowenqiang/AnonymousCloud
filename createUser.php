@@ -93,7 +93,7 @@ if($hasErr == 0)
     $result = mysqli_query($dbc, $query);
     if($result) {
       $name = $fName. ' ' . $lName;
-      $query = "INSERT INTO user(username, persion_id, email, password) VALUES ('$name', LAST_INSERT_ID(), '$email', SHA1('$password'))";
+      $query = "INSERT INTO user(username, person_id, email, password) VALUES ('$name', LAST_INSERT_ID(), '$email', SHA1('$password'))";
       $result = mysqli_query($dbc,$query);
       if($result) { 
         if(isset($_SESSION['username']) and $_SESSION['category'] == 'admin') {
